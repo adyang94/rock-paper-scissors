@@ -53,9 +53,7 @@
             var pointID = 0;
             let playerSelection = prompt("Player Selection?").toLowerCase();
                                    
-            computerSelection = computerPlay();
-            console.log(`computerSelection: ${computerSelection}`);
-            
+            computerSelection = computerPlay();            
             pointID = playRound(playerSelection, computerSelection);
             //playRound function determines who wins the round and returns the winner ID (1 for computer, 2 for user) so the game function can tally up the score.
 
@@ -71,11 +69,7 @@
             else{}
         }
         return score
-
     }
-    console.log("game has started1");
-    
-    var score = game();
-    
+    var score = game();    
     console.log(`Computer Score: ${score[0]}. Player Score: ${score[1]}.`);
 </script>

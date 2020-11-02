@@ -26,12 +26,14 @@
                 (playerSelection == 'scissor' && computerSelection == 'rock')) 
         {
             console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+            return (1);
         }
         else if ((playerSelection == 'paper' && computerSelection == 'rock') ||
                 (playerSelection == 'scissor' && computerSelection == 'paper') ||
                 (playerSelection == 'rock' && computerSelection == 'scissor')) 
         {
             console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+            return (2);
         }
         else
         {
@@ -44,23 +46,36 @@
         console.log(`numberRounds: ${numberRounds}`);
         //VARIABLE DECLARATION
         let playerSelection, computerSelection;
+        var score = [0, 0]; // [computer score, user score]
         //"let" can declare a variable just like "var" can.
-
-
         
         for (let i = 0; i < numberRounds; i++) { //This loops number of roudns desired.
+            var pointID = 0;
             let playerSelection = prompt("Player Selection?").toLowerCase();
-            
-            //playerSelection = playerSelection.toLowerCase;
-            console.log(`playerSelection: ${playerSelection}`);
-
+                                   
             computerSelection = computerPlay();
             console.log(`computerSelection: ${computerSelection}`);
-            playRound(playerSelection, computerSelection);
+            
+            pointID = playRound(playerSelection, computerSelection);
+            //playRound function determines who wins the round and returns the winner ID (1 for computer, 2 for user) so the game function can tally up the score.
+
+            console.log(`pointID: ${pointID}`);
+            if(pointID == 1)
+            {
+                score[0]++;
+            }
+            else if(pointID == 2)
+            {
+                score[1]++;
+            }
+            else{}
         }
+        return score
 
     }
     console.log("game has started1");
     
-    game();
+    var score = game();
+    
+    console.log(`Computer Score: ${score[0]}. Player Score: ${score[1]}.`);
 </script>

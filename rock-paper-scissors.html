@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <title>Rock Paper Scissors</title>
-    
+
 </html>
 
 <script>
     function computerPlay(){
-
+        const min = math.ceil(0);
+        const max = math.floor(100);
+        var computerMove = math.floor(math.random * (max- min) + min);
+        console.log(computerMove);
     }
     function playRound(playerSelection, computerSelection) {
 

@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <title>Rock Paper Scissors</title>
+    <body>
+        <title>Rock Paper Scissors</title>
+    </body>
 </html>
 
 <script>
     function computerPlay(){
         //RETURNS COMPUTER SELECTED VALUE (ROCK, PAPER, OR SCISSOR)
-        const min = math.ceil(0);
-        const max = math.floor(100);
-        var computerMove = math.floor(math.random * (max- min) + min);
-        console.log(computerMove);
+        let choices = ['paper', 'scissor', 'rock'];
+        computerMove = choices[Math.floor(Math.random() * choices.length)];
+              
+        return (computerMove);
+
     }
     function playRound(playerSelection, computerSelection) {
         //PLAYS THE ROUND OF RPS WITH INPUTTED VALUES
-
+        if (playerSelection == computerSelection) {
+            console.log("It's a tie!");
+        }
+        else if ((playerSelection == rock && computerSelection == paper) ||
+                (playerSelection == paper && computerSelection == scissor) ||
+                (playerSelection == scissor && computerSelection == rock) 
+                {
+                    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+                }
+                
+        else if ((playerSelection == rock && computerSelection == paper) ||
+                (playerSelection == paper && computerSelection == scissor) ||
+                (playerSelection == scissor && computerSelection == rock) {
+                    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+                }
     }
     function game() {
         //CALLS THE OTHER FUNCTIONS AND RUNS 5 ROUNDS OF RPS.
+        let numberRounds = prompt("How many games do you want to play?");
+        console.log(`numberRounds: ${numberRounds}`);
+        //VARIABLE DECLARATION
+        let playerSelection, computerSelection;
+        //"let" can declare a variable just like "var" can.
+
+
+        
+        for (let i = 0; i < numberRounds; i++) { //This loops number of roudns desired.
+            let playerSelection = prompt("Player Selection?").toLowerCase();
+            
+            //playerSelection = playerSelection.toLowerCase;
+            console.log(`playerSelection: ${playerSelection}`);
+
+            computerSelection = computerPlay();
+            console.log(`computerSelection: ${computerSelection}`);
+            playRound(playerSelection, computerSelection);
+        }
 
     }
+    console.log("game has started1");
+    
     game();
 </script>

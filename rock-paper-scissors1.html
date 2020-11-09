@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Rock Paper Scissors</h1>
+        <div>
+            <button id = "rock">Rock</button>
+            <button id = "paper">Paper</button>
+            <button id = "scissor">Scissor</button>
+        </div>
+    </body>
+</html>
+
+<script>
+
+
+    function computerPlay(){
+        //RETURNS COMPUTER SELECTED VALUE (ROCK, PAPER, OR SCISSOR)
+        let choices = ['paper', 'scissor', 'rock'];
+        computerMove = choices[Math.floor(Math.random() * choices.length)];
+        return (computerMove);
+        
+
+    }
+    function playRound(playerSelection, computerSelection) 
+    {
+        //PLAYS THE ROUND OF RPS WITH INPUTTED VALUES
+        if (playerSelection == computerSelection) 
+        {
+            console.log("It's a tie!");
+        }
+        else if (
+                (playerSelection == 'rock' && computerSelection == 'paper') ||
+                (playerSelection == 'paper' && computerSelection == 'scissor') ||
+                (playerSelection == 'scissor' && computerSelection == 'rock')
+                )
+        {
+            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+            return (1);
+        }
+        else if (
+                (playerSelection == 'paper' && computerSelection == 'rock') ||
+                (playerSelection == 'scissor' && computerSelection == 'paper') ||
+                (playerSelection == 'rock' && computerSelection == 'scissor')
+                ) 
+        {
+            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+            return (2);
+        }
+        else
+        {
+            console.log("Error: Try again.");
+        }
+    }
+    function game(e) {
+
+
+        var pointID = 0;
+
+        computerSelection = computerPlay();
+        console.log(`playerSelection: ${playerSelection}\ncomputerSelection: ${computerSelection}
+        `);
+
+        pointID = playRound(playerSelection, computerSelection);
+        //playRound function determines who wins the round and returns the winner ID (1 for computer, 2 for user) so the game function can tally up the score.
+
+        console.log(`pointID: ${pointID}`);
+        if(pointID == 1)
+        {
+            score[0]++;
+        }
+        else if(pointID == 2)
+        {
+            score[1]++;
+        }
+        else{}
+        
+        console.log(`score: ${score}`);
+        return score
+    }
+    var score = [0,0];
+    let playerSelection, computerSelection;
+
+    const rock = document.querySelector('#rock');
+    rock.addEventListener('click', () => {
+        playerSelection = 'rock';
+        console.log('-------rock');
+    })
+    const scissor = document.querySelector('#scissor');
+    scissor.addEventListener('click', () => {
+        playerSelection = 'scissor';
+        console.log('-------scissor');
+    })
+    const paper = document.querySelector('#paper');
+    paper.addEventListener('click', () => {
+        playerSelection = 'paper';
+        console.log('---------paper');
+    })
+    
+    window.addEventListener('click', game);   
+
+    console.log(`Computer Score: ${score[0]}. Player Score: ${score[1]}.`);
+</script>
